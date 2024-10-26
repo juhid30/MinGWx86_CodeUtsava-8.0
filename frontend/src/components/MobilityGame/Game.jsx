@@ -4,7 +4,7 @@ import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, off } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -27,6 +27,11 @@ const Game = () => {
   const [clickCount, setClickCount] = useState(0);
 
   const runHandpose = async () => {
+    await tf.ready(); // Ensure TensorFlow is ready
+
+    // Optionally set a backend
+    // await tf.setBackend('webgl'); // Uncomment if needed
+
     const net = await handpose.load();
     console.log(net);
     console.log("handpose loaded");
@@ -90,7 +95,6 @@ const Game = () => {
           zIndex: 9,
           width: 640,
           height: 480,
-        
         }}
       />
 
@@ -109,8 +113,7 @@ const Game = () => {
         }}
       />
 
-      {/* Display clickCount */}
-      <div style={{ position: "absolute", bottom: 20, left: 20, color: 'black', fontSize: '24px' , zIndex: 69}}>
+      <div style={{ position: "absolute", bottom: 20, left: 20, color: 'black', fontSize: '24px', zIndex: 69 }}>
         Click Count: {clickCount}
       </div>
     </div>
