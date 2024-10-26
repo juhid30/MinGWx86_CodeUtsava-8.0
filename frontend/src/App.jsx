@@ -11,6 +11,7 @@ import LandingPage from "./components/LandingPage";
 import Game from "./components/MobilityGame/Game.jsx";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
 import ScreenRecorder from "./components/ScreenRecorder.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 // import GamePage from "./components/GamePage";
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
       {/* <HandTracking /> */}
       {/* <PoseDetectionOverlay /> */}
       {/* <Yoga /> */}
-      <ScreenRecorder />
+      {/* <ScreenRecorder /> */}
+      <Dashboard />
     </>
   );
 }
