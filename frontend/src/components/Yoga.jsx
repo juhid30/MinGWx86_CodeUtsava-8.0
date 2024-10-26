@@ -231,12 +231,12 @@ function Yoga() {
 
   if (isStartPose) {
     return (
-      <div className="yoga-container">
-        <div className="performance-container">
-          <div className="pose-performance">
+      <div className="yoga-container bg-gradient-to-r from-[#FF8C00] to-[#FFA500] w-screen h-screen">
+        <div className="performance-container flex p-5 absolute left-[150px]">
+          <div className="pose-performance m-2.5 bg-white rounded-lg p-2.5">
             <h4>Pose Time: {poseTime} s</h4>
           </div>
-          <div className="pose-performance">
+          <div className="pose-performance m-2.5 bg-white rounded-lg p-2.5">
             <h4>Best: {bestPerform} s</h4>
           </div>
         </div>
@@ -266,10 +266,16 @@ function Yoga() {
             }}
           ></canvas>
           <div>
-            <img src={poseImages[currentPose]} className="pose-img" />
+            <img
+              src={poseImages[currentPose]}
+              className="pose-img absolute right-[120px] top-[80px] w-[500px] aspect-[1]"
+            />
           </div>
         </div>
-        <button onClick={stopPose} className="secondary-btn">
+        <button
+          onClick={stopPose}
+          className="secondary-btn relative left-1/2 transform -translate-x-1/2 px-5 py-2.5 rounded border border-[rgba(125,125,125,0.1)] border-5 bg-[rgba(0,0,0,0.2)] shadow-none text-white hover:bg-[rgba(0,0,0,0.4)]"
+        >
           Stop Pose
         </button>
       </div>
@@ -277,14 +283,17 @@ function Yoga() {
   }
 
   return (
-    <div className="yoga-container">
+    <div className="yoga-container bg-gradient-to-r from-[#FF8C00] to-[#FFA500] w-screen h-screen">
       <DropDown
         poseList={poseList}
         currentPose={currentPose}
         setCurrentPose={setCurrentPose}
       />
       <Instructions currentPose={currentPose} />
-      <button onClick={startYoga} className="secondary-btn">
+      <button
+        onClick={startYoga}
+        className="secondary-btn relative left-1/2 transform -translate-x-1/2 px-5 py-2.5 rounded border border-[rgba(125,125,125,0.1)] border-5 bg-[rgba(0,0,0,0.2)] shadow-none text-white hover:bg-[rgba(0,0,0,0.4)]"
+      >
         Start Pose
       </button>
     </div>

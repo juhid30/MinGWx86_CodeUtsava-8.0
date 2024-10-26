@@ -1,14 +1,11 @@
 import React from "react";
-
 import { poseImages } from "../utils/pose_images";
-
-// import "./DropDown.css";
 
 export default function DropDown({ poseList, currentPose, setCurrentPose }) {
   return (
-    <div className="dropdown dropdown-container">
+    <div className="flex justify-center">
       <button
-        className="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary w-[400px] bg-transparent hover:border-white focus:bg-white focus:text-black focus:ring-0 focus:border-white"
         type="button"
         data-bs-toggle="dropdown"
         id="pose-dropdown-btn"
@@ -17,14 +14,14 @@ export default function DropDown({ poseList, currentPose, setCurrentPose }) {
         {currentPose}
       </button>
       <ul
-        class="dropdown-menu dropdown-custom-menu"
+        className="dropdown-menu overflow-scroll max-h-[40vh] scrollbar-hide"
         aria-labelledby="dropdownMenuButton1"
       >
         {poseList.map((pose) => (
-          <li onClick={() => setCurrentPose(pose)}>
-            <div class="dropdown-item-container">
-              <p className="dropdown-item-1">{pose}</p>
-              <img src={poseImages[pose]} className="dropdown-img" />
+          <li onClick={() => setCurrentPose(pose)} key={pose}>
+            <div className="w-[400px] flex rounded-md justify-center items-center">
+              <p className="m-2">{pose}</p>
+              <img src={poseImages[pose]} alt={pose} className="w-20 h-20" />
             </div>
           </li>
         ))}
