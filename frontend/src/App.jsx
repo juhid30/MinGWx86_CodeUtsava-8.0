@@ -13,6 +13,7 @@ import LandingPage from "./components/LandingPage";
 import Game from "./components/Game";
 import HandTracking from "./components/NayaWala";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
+import ScreenRecorder from "./components/ScreenRecorder.jsx";
 // import GamePage from "./components/GamePage";
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
       {/* <Yoga /> */}
       {/* <HandTracking /> */}
       {/* <PoseDetectionOverlay /> */}
-      <Yoga />
+      {/* <Yoga /> */}
+      <ScreenRecorder />
     </>
   );
 }
