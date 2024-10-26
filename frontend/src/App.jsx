@@ -10,9 +10,7 @@ import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
 import Game from "./components/Game";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
-import Dashboard from "./components/Dashboard.jsx";
-import DoshaQuiz from "./components/DoshaQuiz.jsx";
-import DoshaRecommendations from "./components/DoshaRecommendations.jsx";
+import ScreenRecorder from "./components/ScreenRecorder.jsx";
 // import GamePage from "./components/GamePage";
 
 function App() {
@@ -31,8 +29,7 @@ function App() {
       {/* <HandTracking /> */}
       {/* <PoseDetectionOverlay /> */}
       {/* <Yoga /> */}
-      {/* <Dashboard /> */}
-      <DoshaQuiz />
+      <ScreenRecorder />
     </>
   );
 }
