@@ -21,8 +21,8 @@ function App() {
 
   return (
     <>
-      {/* <Dashboard /> */}
-      <LandingPage />
+      {/* <Game /> */}
+      {/* <LandingPage /> */}
       {/* <div className="bg-red-900">Hello</div> */}
       {/* <GamePage /> */}
       {/* <View360 /> */}
