@@ -7,7 +7,6 @@ import finbg from "../../public/financial_bg.jpg";
 import fries from "../../public/fries.png";
 import money from "../../public//money.png";
 
-
 Chart.register(ArcElement, Tooltip, Legend);
 Chart.register(...registerables);
 
@@ -34,6 +33,28 @@ const Dashboard = () => {
 
     // Add more videos if needed
   ];
+
+  const [labels, setLabels] = useState({
+    amountSpent: "Amount Spent",
+    financialGames: "Financial Games",
+    amountSaved: "Amount Saved",
+  });
+
+  const handleArrowClick = (direction) => {
+    if (direction === "up") {
+      setLabels({
+        amountSpent: "Wordle",
+        financialGames: "Sudoku",
+        amountSaved: "Memory Cards",
+      });
+    } else if (direction === "down") {
+      setLabels({
+        amountSpent: "Yoga Trainer",
+        financialGames: "Catch the Block",
+        amountSaved: "Hole in Wall",
+      });
+    }
+  };
 
   const data1 = {
     labels: ["Red", "Blue", "Yellow"], // Add meaningful labels
@@ -134,8 +155,8 @@ const Dashboard = () => {
           {/* Main Content */}
           <main className="flex gap-8 h-[80vh] w-full items-center justify-center p-4">
             {/* Statistics Section */}
-            <section className=" h-full w-[70%] bg-white rounded-lg shadow flex flex-col-reverse">
-              <div className=" h-[70%] w-full flex items-center justify-center relative">
+            <section className="h-full w-[70%] bg-white rounded-lg shadow flex flex-col-reverse p-2">
+              <div className="h-[70%] w-full flex items-center justify-center relative">
                 <Line data={lineData[dataType]} className="w-full max-w-lg" />
 
                 <div className="absolute right-6 top-20 flex flex-col space-y-4">
@@ -159,10 +180,22 @@ const Dashboard = () => {
                   </button>
                 </div>
               </div>
-              <div className="h-[30%] w-full bg-red-50 flex">
-                <div className="flex flex-col w-[10%] h-full"></div>
+              <div className="h-[30%] w-full  flex">
+                <div className="flex flex-col w-[10%] h-full items-center justify-center">
+                  <button
+                    onClick={() => handleArrowClick("up")}
+                    className="h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full mb-1"
+                  >
+                    ↑
+                  </button>
+                  <button
+                    onClick={() => handleArrowClick("down")}
+                    className="h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"
+                  >
+                    ↓
+                  </button>
+                </div>
                 <div className="flex h-[100%] w-[90%] ">
-                  {/* Amount Spent Section */}
                   <div className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center ">
                     <img
                       className="float-end absolute bottom-[-30px] -rotate-12 h-[75%] right-[-25px] z-20"
@@ -170,14 +203,13 @@ const Dashboard = () => {
                       alt="Money"
                     />
                     <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#ff4444]">
-                      Amount Spent
+                      {labels.amountSpent}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1] bg-white">
-                      ₹{ "5000"}
+                      ₹{"5000"}
                     </div>
                   </div>
 
-                  {/* Financial Games Section */}
                   <a
                     href="https://financial-game.vercel.app/"
                     target="_blank"
@@ -191,12 +223,11 @@ const Dashboard = () => {
                     />
                     <span className="absolute inset-0 flex items-center justify-center text-[#40294D] font-bold text-lg rounded-[30px]">
                       <span className="bg-white p-1 w-[50%] text-center text-bold rounded-xl">
-                        FINANCIAL GAMES
+                        {labels.financialGames}
                       </span>
                     </span>
                   </a>
 
-                  {/* Amount Saved Section */}
                   <div className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center ">
                     <img
                       className="float-end absolute bottom-[-20px] h-[55%] right-[-25px]"
@@ -204,10 +235,10 @@ const Dashboard = () => {
                       alt="Books"
                     />
                     <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#66CEA5]">
-                      Amount Saved
+                      {labels.amountSaved}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1]">
-                      <span className="z-[100]">₹{ "2500"}</span>
+                      <span className="z-[100]">₹{"2500"}</span>
                     </div>
                   </div>
                 </div>
@@ -256,43 +287,14 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="h-[20%] w-full flex mt-4">
-                <div className="w-[65%] h-full flex justify-center items-center pt-2">
-                  <div className="bg-white shadow rounded-lg w-full h-full overflow-y-auto">
-                    <table className="w-full h-full bg-white">
-                      <thead>
-                        <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                          <th className="py-2 px-3 text-left">Video</th>
-                          <th className="py-2 px-3 text-left">Link</th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-gray-700 text-sm">
-                        {videos.map((video, index) => (
-                          <tr
-                            key={index}
-                            className="border-b border-gray-200 hover:bg-gray-100"
-                          >
-                            <td className="py-2 px-3">{video.title}</td>
-                            <td className="py-2 px-3">
-                              <a
-                                href={video.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-500 hover:underline"
-                              >
-                                Link
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                <div className="w-full h-full flex justify-center items-center">
+                  <div className="w-[35%] flex justify-center p-4 items-center flex-col">
+                    <h5 className="text-sm font-semibold mb-2">Dosha</h5>
+                    <Doughnut data={data1} options={options} />
                   </div>
                 </div>
-                <div className="w-[35%] mt-4 flex flex-col-reverse justify-center items-center">
-                  <h5 className="text-sm font-semibold mb-2">Dosha</h5>
-                  <Doughnut data={data1} options={options} />
-                </div>
               </div>
+
               <div className=" h-[55%] w-full mt-2 p-4 rounded-lg">
                 <h2 className="text-lg font-semibold mb-2">
                   Medicine Schedule
