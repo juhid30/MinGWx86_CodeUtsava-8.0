@@ -5,7 +5,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import { count } from "../../utils/music";
 
-import Instructions from "../Instrctions/Instructions";
+import Instructions from "../Instructions/Instructions";
 
 import "./Yoga.css";
 
