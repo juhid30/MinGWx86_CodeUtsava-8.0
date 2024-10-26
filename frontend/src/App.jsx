@@ -8,10 +8,12 @@ import Login from "./components/Login";
 import FitData from "./components/FitData";
 import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
-import Game from "./components/Game";
+// import Game from "./components/Game";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
 import ScreenRecorder from "./components/ScreenRecorder.jsx";
 import NewScreenRecord from "./components/NewScreenRecord.jsx";
+import Dashboard from "./components/Dashboard.jsx";
+// import Game from "../src/components/MobilityGame/Game.jsx";
 // import GamePage from "./components/GamePage";
 
 function App() {
@@ -19,7 +21,8 @@ function App() {
 
   return (
     <>
-      {/* <LandingPage /> */}
+      {/* <Dashboard /> */}
+      <LandingPage />
       {/* <div className="bg-red-900">Hello</div> */}
       {/* <GamePage /> */}
       {/* <View360 /> */}
@@ -31,7 +34,8 @@ function App() {
       {/* <PoseDetectionOverlay /> */}
       {/* <Yoga /> */}
       {/* <ScreenRecorder /> */}
-      <NewScreenRecord />
+      {/* <NewScreenRecord /> */}
+      {/* <Game /> */}
     </>
   );
 }

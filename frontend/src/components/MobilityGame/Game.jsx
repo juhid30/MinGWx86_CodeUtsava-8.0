@@ -14,7 +14,7 @@ const firebaseConfig = {
   storageBucket: "codeutsava-45dda.appspot.com",
   messagingSenderId: "125053951590",
   appId: "1:125053951590:web:f00bbb580ca546b16057a7",
-  measurementId: "G-38Z99K1GNL"
+  measurementId: "G-38Z99K1GNL",
 };
 
 // Initialize Firebase
@@ -62,7 +62,7 @@ const Game = () => {
     runHandpose();
 
     // Firebase: Listen for changes in clickCount
-    const clickCountRef = ref(database, 'clickCount');
+    const clickCountRef = ref(database, "clickCount");
     const unsubscribe = onValue(clickCountRef, (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
@@ -90,7 +90,6 @@ const Game = () => {
           zIndex: 9,
           width: 640,
           height: 480,
-        
         }}
       />
 
@@ -110,7 +109,16 @@ const Game = () => {
       />
 
       {/* Display clickCount */}
-      <div style={{ position: "absolute", bottom: 20, left: 20, color: 'black', fontSize: '24px' , zIndex: 69}}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: 20,
+          color: "black",
+          fontSize: "24px",
+          zIndex: 69,
+        }}
+      >
         Click Count: {clickCount}
       </div>
     </div>

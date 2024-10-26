@@ -20,6 +20,7 @@
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "firebase": "^11.0.1",
+    "framer-motion": "^11.11.10",
     "handtrackjs": "^0.1.5",
     "pannellum-react": "^1.2.4",
     "postcss": "^8.4.47",
