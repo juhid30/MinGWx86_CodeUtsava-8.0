@@ -3,3 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Hide scrollbar for all elements */
+html {
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Alternatively, you can hide the scrollbar while allowing scrolling */
+body {
+  overflow: hidden; /* Hides the scrollbar completely */
+}
+
+/* If you want to allow scrolling but still hide the scrollbar */
+body {
+  overflow-y: scroll; /* Keep vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scrolling */
+}
