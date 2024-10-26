@@ -5,7 +5,10 @@ import "./App.css";
 import Yoga from "./components/Yoga";
 import Login from "./components/Login";
 import FitData from "./components/FitData";
-import View360 from "./components/View360";
+import Layout from "./components/Layout";
+import LandingPage from "./components/LandingPage";
+import Game from "./components/Game";
+import GamePage from "./components/GamePage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,7 +16,7 @@ function App() {
   return (
     <>
       {/* <div className="bg-red-900">Hello</div> */}
-      <View360 />
+      <GamePage />
     </>
   );
 }

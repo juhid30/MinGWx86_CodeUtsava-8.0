@@ -39,8 +39,8 @@ const FitData = () => {
     try {
       const response = await axios.post('https://oauth2.googleapis.com/token', {
         id_token: firebaseToken,
-        client_id: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
-        audience: 'YOUR_GOOGLE_CLIENT_ID', // Replace with your Google Client ID
+        client_id: 'k34rsdf34refdswerw', 
+        audience: 'k34rsdf34refdswerw', 
         grant_type: 'urn:ietf:params:oauth:grant-type:token-id',
       });
 
