@@ -36,10 +36,8 @@ const Dashboard = () => {
       let text = await response.text();
       console.log(text);
       // Clean and parse JSON
-      text = text
-        .replace(/```JSON/g, "")
-        .replace(/```/g, "")
-        .trim();
+      text = text.replace(/```JSON/gi, "").replace(/```json/gi, "").replace(/```/g, "").trim();
+      console.log(text);
       // const jsonData = JSON.parse(text);
 
       // Format message for display in modal
