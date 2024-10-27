@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Layout from "../Layout";
 
 const initialBoard = [
   [5, 3, 0, 0, 7, 0, 0, 0, 0],
@@ -105,7 +106,8 @@ const Game = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 p-4 bg-gray-50 min-h-screen">
+    <Layout>
+    <div className="flex flex-col items-center  p-4 bg-gray-50 h-full w-full">
       <h1 className="text-4xl font-bold mb-6 text-blue-600">Sudoku Game</h1>
       <div className="grid grid-cols-9 gap-1 border-4 border-gray-800 rounded-lg p-2 bg-white shadow-md">
         {board.map((row, rowIndex) =>
@@ -153,6 +155,7 @@ const Game = () => {
         </button>
       </div>
     </div>
+    </Layout>
   );
 };
 

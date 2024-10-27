@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
           <div className="h-full w-[70%] flex items-center justify-around">
             <div onClick={() => handleNavigation('/')} className="cursor-pointer">Home</div>
             <div onClick={() => handleNavigation('/dashboard')} className="cursor-pointer">Dashboard</div>
-            <div onClick={() => handleNavigation('/catch-the-block')} className="cursor-pointer">BlockGame</div>
+            <div onClick={() => handleNavigation('/view360')} className="cursor-pointer">Religious Tour</div>
           </div>
           <div className="h-full w-[10%] rounded-r-[1.7rem] flex items-center justify-center">
             <i className="ri-user-fill text-xl bg-purple-200 p-4 rounded-full"></i>

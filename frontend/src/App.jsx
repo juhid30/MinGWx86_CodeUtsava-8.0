@@ -36,6 +36,7 @@ function App() {
           <Route path="/catch-the-block" element={<Game />} />{" "}
           <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
           <Route path="/memory-card" element={<MemoryCardGame />} />{" "}
+          <Route path="/view360" element={<View360 />} />{" "}
           {/* Another example route */}
         </Routes>
       </Router>

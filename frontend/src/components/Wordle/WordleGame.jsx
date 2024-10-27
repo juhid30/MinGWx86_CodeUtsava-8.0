@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Confetti from "react-confetti";
+import Layout from "../Layout";
 
 const LEVELS = [
   {
@@ -104,46 +105,48 @@ const WordleGame = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200 p-4">
-      {gameWon && <Confetti />}
-      <h1 className="text-4xl font-bold mb-6">
-        Wordle Game - Level {level + 1}
-      </h1>
-      <div className="flex flex-col mb-4">{renderGuesses()}</div>
-      <form onSubmit={handleSubmit} className="flex mb-4">
-        <input
-          type="text"
-          value={currentGuess}
-          onChange={handleInputChange}
-          maxLength={5}
-          disabled={attempts >= LEVELS[level].maxAttempts || gameWon}
-          className="border-2 border-gray-400 p-2 rounded w-40 text-center text-xl"
-        />
-        <button
-          type="submit"
-          disabled={attempts >= LEVELS[level].maxAttempts || gameWon}
-          className="ml-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition"
-        >
-          Guess
-        </button>
-      </form>
-      {attempts >= LEVELS[level].maxAttempts && !gameWon && (
-        <div className="mt-4 text-xl">
-          The word was: <strong>{targetWord}</strong>
-        </div>
-      )}
-      {gameWon && (
-        <div className="mt-4 text-xl">
-          Congratulations! You guessed the word!
+    <Layout>
+      <div className="flex flex-col items-center justify-center h-full w-full bg-gray-200 p-4">
+        {gameWon && <Confetti />}
+        <h1 className="text-4xl font-bold mb-6">
+          Wordle Game - Level {level + 1}
+        </h1>
+        <div className="flex flex-col mb-4">{renderGuesses()}</div>
+        <form onSubmit={handleSubmit} className="flex mb-4">
+          <input
+            type="text"
+            value={currentGuess}
+            onChange={handleInputChange}
+            maxLength={5}
+            disabled={attempts >= LEVELS[level].maxAttempts || gameWon}
+            className="border-2 border-gray-400 p-2 rounded w-40 text-center text-xl"
+          />
           <button
-            onClick={handleNextLevel}
-            className="ml-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+            type="submit"
+            disabled={attempts >= LEVELS[level].maxAttempts || gameWon}
+            className="ml-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition"
           >
-            Next Level
+            Guess
           </button>
-        </div>
-      )}
-    </div>
+        </form>
+        {attempts >= LEVELS[level].maxAttempts && !gameWon && (
+          <div className="mt-4 text-xl">
+            The word was: <strong>{targetWord}</strong>
+          </div>
+        )}
+        {gameWon && (
+          <div className="mt-4 text-xl">
+            Congratulations! You guessed the word!
+            <button
+              onClick={handleNextLevel}
+              className="ml-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+            >
+              Next Level
+            </button>
+          </div>
+        )}
+      </div>
+    </Layout>
   );
 };
 
