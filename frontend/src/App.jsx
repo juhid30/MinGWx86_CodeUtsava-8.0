@@ -10,17 +10,36 @@ import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
 // import Game from "./components/Game";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
+import BlockGame from "../src/components/MobilityGame/Game.jsx";
 import ScreenRecorder from "./components/ScreenRecorder.jsx";
 import NewScreenRecord from "./components/NewScreenRecord.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 // import Game from "../src/components/MobilityGame/Game.jsx";
 // import GamePage from "./components/GamePage";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoginPage from "./components/LoginPage.jsx";
+import DoshaQuiz from "../src/components/DoshaQuiz.jsx";
+import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />{" "}
+          <Route path="/dashboard" element={<Dashboard />} />{" "}
+          <Route path="/sudoku" element={<SudokuGame />} />{" "}
+          <Route path="/wordle" element={<wordle />} />{" "}
+          <Route path="/mem-puzzle" element={<sudoku />} />{" "}
+          <Route path="/yoga" element={<sudoku />} />{" "}
+          <Route path="/hole-in-wall" element={<sudoku />} />{" "}
+          <Route path="/catch-the-block" element={<BlockGame />} />{" "}
+          <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
+          {/* Another example route */}
+        </Routes>
+      </Router>
       {/* <Game /> */}
       {/* <LandingPage /> */}
       {/* <div className="bg-red-900">Hello</div> */}
