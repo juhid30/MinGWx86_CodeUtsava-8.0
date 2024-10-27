@@ -4,5 +4,17 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".invisible-scrollbar": {
+          "scrollbar-width": "none" /* For Firefox */,
+          "-ms-overflow-style": "none" /* For Internet Explorer */,
+        },
+        ".invisible-scrollbar::-webkit-scrollbar": {
+          display: "none" /* For Chrome, Safari, and Opera */,
+        },
+      });
+    },
+  ],
 };
