@@ -1,31 +1,82 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { doc, setDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleLogin = () => {
-    // You can add login logic here (e.g., API calls)
+  const handleLogin = async (e) => {
+    // Prevent the default form submission behavior
+    e.preventDefault();
+
+    // Check if a file has been selected
+    if (!selectedFile) {
+      console.error("No file selected.");
+      return;
+    }
+
+    try {
+      const base64Image = await toBase64(selectedFile);
+      const API_KEY = "AIzaSyCVOV_MuOdKNFYVTQOzjtjpSDqL73FspW8"; // Replace with your actual API key
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      const prompt =
+        "Extract the text from the given image and format it as JSON with the following keys: 'name' for the medicine's name and 'pres' for the prescription information.";
+
+      const image = {
+        inlineData: {
+          data: base64Image,
+          mimeType: selectedFile.type,
+        },
+      };
+
+      const result = await model.generateContent([prompt, image]);
+      let ans = result.response.text(); // Get the accuracy response
+      ans = ans
+        .replace(/```json/g, "")
+        .replace(/```/g, "")
+        .trim();
+
+      // let jsonData = JSON.parse(ans);
+      // ans.console.log(jsonData); // Log the accuracy for debugging
+      let extractedData;
+      try {
+        extractedData = JSON.parse(ans); // Parse the JSON string into an object
+        console.log("Extracted Data:", extractedData); // Log the extracted data
+        await setDoc(
+          doc(db, "extractedData", "CmmnNRQpfuCzuY5iDlEz"),
+          extractedData
+        );
+      } catch (parseError) {
+        console.error("Error parsing response:", parseError);
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
+
     navigate("/dashboard"); // Redirect to the dashboard
+  };
+
+  const toBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(",")[1]); // Extract base64 part
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type === "image/jpeg") {
-      setSelectedFile(file);
+      setSelectedFile(file); // Set the selected file
       alert(`File selected: ${file.name}`);
     } else {
       alert("Please upload a .jpg file.");
-    }
-  };
-
-  const handleFileUpload = () => {
-    if (selectedFile) {
-      // Implement the upload logic here, e.g., uploading to Firebase Storage or another server
-      alert(`Uploading file: ${selectedFile.name}`);
-    } else {
-      alert("Please select a file first.");
     }
   };
 
@@ -38,7 +89,7 @@ const LoginPage = () => {
         >
           Login
         </h2>
-        
+
         <div className="mb-5">
           <label className="block text-gray-700 mb-2 text-lg">Email</label>
           <input
@@ -59,19 +110,15 @@ const LoginPage = () => {
 
         {/* File input for .jpg files */}
         <div className="mb-5">
-          <label className="block text-gray-700 mb-2 text-lg">Upload Prescription</label>
+          <label className="block text-gray-700 mb-2 text-lg">
+            Upload Prescription
+          </label>
           <input
             type="file"
             accept=".jpg"
             onChange={handleFileChange}
             className="w-full p-3 border border-gray-300 rounded"
           />
-          <button
-            onClick={handleFileUpload}
-            className="w-full bg-[#b873b0] text-white py-3 mt-3  transition duration-200 hover:bg-[#d68fcd] text-lg rounded-lg"
-          >
-            Upload Prescription
-          </button>
         </div>
 
         <button
