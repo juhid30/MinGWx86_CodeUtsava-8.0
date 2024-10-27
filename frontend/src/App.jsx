@@ -4,7 +4,6 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import Yoga from "./components/Yoga/Yoga.jsx";
 import View360 from "./components/View360";
-import Login from "./components/Login";
 import FitData from "./components/FitData";
 import Layout from "./components/Layout";
 import LandingPage from "./components/LandingPage";
@@ -40,7 +39,6 @@ function App() {
           {/* Another example route */}
         </Routes>
       </Router>
-
     </>
   );
 }
