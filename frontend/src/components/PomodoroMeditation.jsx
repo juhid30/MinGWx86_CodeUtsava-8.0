@@ -51,7 +51,7 @@ const PomodoroMeditation = () => {
 
   return (
     <Layout>
-      <div classN ame="flex items-center justify-between h-[85.5vh] bg-gradient-to-br from-purple-200 to-pink-300 p-10">
+      <div className="flex items-center justify-between h-[85.5vh] bg-gradient-to-br from-purple-200 to-pink-300 p-10">
         {/* Left Side: Timer and Controls */}
         <div className="flex flex-col items-start w-full max-w-md">
           <h2 className="text-4xl font-extrabold text-purple-800 mb-6">

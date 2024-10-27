@@ -7,13 +7,13 @@ function CommunityForum() {
       name: "Sustainable Living Discussions",
       id: 1,
       createdAt: "Dec 12, 2023 - 09:00 WIB",
-      createdBy: "John Doe",
+      createdBy: "Anish Awasthi",
     },
     {
       name: "Environmental Awareness Campaigns",
       id: 2,
       createdAt: "Dec 13, 2023 - 10:00 WIB",
-      createdBy: "Jane Smith",
+      createdBy: "Juhi Deore",
     },
   ]);
   const [showPopup, setShowPopup] = useState(false);
@@ -23,7 +23,7 @@ function CommunityForum() {
     1: [
       {
         id: 1,
-        user: "Juhi Deore",
+        user: "Sunil Pal",
         messages: ["How can we promote sustainable living in our community?"],
         profileImage: "https://example.com/profile1.jpg",
       },

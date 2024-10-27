@@ -23,15 +23,29 @@ const Modal = ({ isOpen, onClose, message }) => {
         >
           &times;
         </button>
-        <h2 className="text-2xl font-bold text-center text-white mb-4">Health Summary and Recommendations</h2>
+        <h2 className="text-2xl font-bold text-center text-white mb-4">
+          Health Summary and Recommendations
+        </h2>
         <div className="mt-4">
           {Object.keys(jsonData).length > 0 ? (
             <ul className="list-disc pl-5 text-white">
-              <li><strong>Average Exercise:</strong> {jsonData.avg_exer}</li>
-              <li><strong>Average Calories:</strong> {jsonData.avg_cal}</li>
-              <li><strong>Average Steps:</strong> {jsonData.avg_steps}</li>
-              <li><strong>Step Recommendation:</strong> {jsonData.Step_recommendation}</li>
-              <li><strong>Calorie Recommendation:</strong> {jsonData.Calorie_recommendation}</li>
+              <li>
+                <strong>Average Exercise:</strong> {jsonData.avg_exer}
+              </li>
+              <li>
+                <strong>Average Calories:</strong> {jsonData.avg_cal}
+              </li>
+              <li>
+                <strong>Average Steps:</strong> {jsonData.avg_steps}
+              </li>
+              <li>
+                <strong>Step Recommendation:</strong>{" "}
+                {jsonData.recommendations.steps}
+              </li>
+              <li>
+                <strong>Calorie Recommendation:</strong>{" "}
+                {jsonData.recommendations.cal}
+              </li>
             </ul>
           ) : (
             <p className="text-white">No data available.</p>
