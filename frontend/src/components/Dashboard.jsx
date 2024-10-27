@@ -317,7 +317,7 @@ const Dashboard = () => {
             {/* Profile Section */}
             <section className="flex flex-col h-full w-[30%] bg-white p-6 rounded-lg shadow">
               <div className="flex items-center h-[12%] space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gray-400"></div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s" alt="" className="h-12 w-12 rounded-2xl" />
                 <div>
                   <h3 className="text-lg font-medium">Sunil Pal</h3>
                   <p className="text-sm text-gray-500">Profile info here</p>
