@@ -158,7 +158,7 @@ const Dashboard = () => {
                 <div className="absolute right-6 top-20 flex flex-col space-y-4">
                   <button
                     onClick={() => handleButtonClick("heartRate")}
-                    className="bg-red-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+                    className="bg-[#ff5d5d] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
                     Heart Rate
                   </button>
@@ -170,7 +170,7 @@ const Dashboard = () => {
                   </button>
                   <button
                     onClick={() => handleButtonClick("steps")}
-                    className="bg-green-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+                    className="bg-[#66CEA5] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
                     Steps
                   </button>
@@ -205,7 +205,7 @@ const Dashboard = () => {
                       src={fries || "path/to/money-image"}
                       alt="Money"
                     />
-                    <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#ff4444]">
+                    <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#ff5d5d]">
                       {labels.amountSpent}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1] bg-white">
