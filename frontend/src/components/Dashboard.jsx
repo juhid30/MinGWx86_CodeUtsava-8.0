@@ -13,7 +13,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 Chart.register(ArcElement, Tooltip, Legend);
 Chart.register(...registerables);
 const API_KEY = "AIzaSyBBp8jEQ3zEJXLkSVgBpGHKr6q-EycIDSI";
-  const genAI = new GoogleGenerativeAI(API_KEY);
+const genAI = new GoogleGenerativeAI(API_KEY);
 
 const Dashboard = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -29,28 +29,31 @@ const Dashboard = () => {
          Steps: data: [0, 6424, 10334, 7613, 1846],
         The Json should have the following keys: avg_exer, avg_cal, avg_steps, recommendations for each.
     `;
-  
+
     try {
       const result = await model.generateContent(prompt);
       const response = await result.response;
       let text = await response.text();
       console.log(text);
       // Clean and parse JSON
-      text = text.replace(/```JSON/g, "").replace(/```/g, "").trim();
+      text = text
+        .replace(/```JSON/g, "")
+        .replace(/```/g, "")
+        .trim();
       // const jsonData = JSON.parse(text);
-  
+
       // Format message for display in modal
-      
-  
+
       setGeminiMessage(text);
       setModalOpen(true);
     } catch (error) {
       console.error("Failed to fetch Gemini message:", error);
-      setGeminiMessage("Failed to load recommendations. Please try again later.");
+      setGeminiMessage(
+        "Failed to load recommendations. Please try again later."
+      );
       setModalOpen(true);
     }
   };
-  
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -62,20 +65,20 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const handleDoshaClick = () => {
-    navigate('/dosha-quiz');
+    navigate("/dosha-quiz");
   };
 
-    const medicines = [
-    { name: "Paracetamol", schedule: "1-0-1" },
-    { name: "Aspirin", schedule: "0-1-0" },
-    { name: "Ibuprofen", schedule: "1-1-1" },
-    { name: "Amoxicillin", schedule: "1-0-0" },
-    { name: "Cough Syrup", schedule: "0-0-1" },
-    { name: "Antacid", schedule: "1-1-0" },
-    { name: "Vitamin D", schedule: "1-0-1" },
-    { name: "Metformin", schedule: "0-1-1" },
-    { name: "Lisinopril", schedule: "1-1-1" },
-    { name: "Atorvastatin", schedule: "0-1-0" },
+  const medicines = [
+    { name: "Dolorex", schedule: "1-1-0" },
+    { name: "Aferin", schedule: "0-1-1" },
+    { name: "Parol", schedule: "0-1-0" },
+    // { name: "Amoxicillin", schedule: "1-0-0" },
+    // { name: "Cough Syrup", schedule: "0-0-1" },
+    // { name: "Antacid", schedule: "1-1-0" },
+    // { name: "Vitamin D", schedule: "1-0-1" },
+    // { name: "Metformin", schedule: "0-1-1" },
+    // { name: "Lisinopril", schedule: "1-1-1" },
+    // { name: "Atorvastatin", schedule: "0-1-0" },
     // Add more medicines if needed
   ];
 
@@ -157,7 +160,7 @@ const Dashboard = () => {
       datasets: [
         {
           label: "Calories",
-          data: [0,1264, 1754, 1672, 1143],
+          data: [0, 1264, 1754, 1672, 1143],
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
         },
@@ -168,7 +171,7 @@ const Dashboard = () => {
       datasets: [
         {
           label: "Exercise(in min)",
-          data: [0,75.2,122.8,110.4,78],
+          data: [0, 75.2, 122.8, 110.4, 78],
           borderColor: "rgba(54, 162, 235, 1)",
           backgroundColor: "rgba(54, 162, 235, 0.2)",
         },
@@ -200,14 +203,17 @@ const Dashboard = () => {
             {/* Statistics Section */}
             <section className="h-full w-[70%] rounded-lg shadow flex flex-col-reverse p-2">
               <div className="h-[70%] w-full flex items-center justify-center relative">
-                <Line data={lineData[dataType]} className="w-full max-w-2xl pr-[10%]" />
+                <Line
+                  data={lineData[dataType]}
+                  className="w-full max-w-2xl pr-[10%]"
+                />
 
                 <div className="absolute right-6 top-20  w-[16%] flex flex-col space-y-4">
                   <button
                     onClick={() => handleButtonClick("calories")}
                     className="bg-[#ff5d5d] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
-                   Calories
+                    Calories
                   </button>
                   <button
                     onClick={() => handleButtonClick("exercise")}
@@ -220,11 +226,13 @@ const Dashboard = () => {
                     className="bg-[#66CEA5] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
                     Steps
-                  </button><button
-    onClick={fetchGeminiMessage}
-    className="bg-purple-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
-  >Suggest
-  </button>
+                  </button>
+                  <button
+                    onClick={fetchGeminiMessage}
+                    className="bg-purple-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Suggest
+                  </button>
                 </div>
               </div>
               <div className="h-[30%] w-full  flex">
@@ -240,7 +248,7 @@ const Dashboard = () => {
                     className="h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"
                   >
                     ↓
-                  </button> 
+                  </button>
                 </div>
                 <div className="flex h-[100%] w-[90%] ">
                   <a
@@ -317,7 +325,11 @@ const Dashboard = () => {
             {/* Profile Section */}
             <section className="flex flex-col h-full w-[30%] bg-white p-6 rounded-lg shadow">
               <div className="flex items-center h-[12%] space-x-4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s" alt="" className="h-12 w-12 rounded-2xl" />
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s"
+                  alt=""
+                  className="h-12 w-12 rounded-2xl"
+                />
                 <div>
                   <h3 className="text-lg font-medium">Sunil Pal</h3>
                   <p className="text-sm text-gray-500">Profile info here</p>
@@ -355,7 +367,8 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="h-[20%] w-full flex mt-4"
+              <div
+                className="h-[20%] w-full flex mt-4"
                 onClick={handleDoshaClick}
               >
                 <div className="w-full h-full flex justify-center items-center">
@@ -376,6 +389,7 @@ const Dashboard = () => {
                       <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                         <th className="py-2 px-3 text-left">Medicine</th>
                         <th className="py-2 px-3 text-left">Schedule</th>
+                        <span className="w-[12px] font-bold">+</span>
                       </tr>
                     </thead>
                     <tbody className="text-gray-700 text-sm">
@@ -393,8 +407,11 @@ const Dashboard = () => {
                 </div>
               </div>
             </section>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} message={geminiMessage} />
-   
+            <Modal
+              isOpen={isModalOpen}
+              onClose={handleCloseModal}
+              message={geminiMessage}
+            />
           </main>
         </div>
       </Layout>

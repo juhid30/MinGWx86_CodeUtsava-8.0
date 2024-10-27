@@ -20,11 +20,13 @@ import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
 import WordleGame from "./components/Wordle/WordleGame.jsx";
 import MemoryCardGame from "./components/MemoryCardGame.jsx";
 import CommunityForum from "./components/CommunityForum.jsx";
+import NewScreenRecord from "./components/NewScreenRecord.jsx";
+import PomodoroMeditation from "./components/PomodoroMeditation.jsx";
 const YogaRedirect = () => {
   useEffect(() => {
     window.location.href = "http://localhost:5174/start";
   }, []);
-  
+
   return null; // No UI to render
 };
 function App() {
@@ -40,11 +42,13 @@ function App() {
           <Route path="/sudoku" element={<SudokuGame />} />{" "}
           <Route path="/wordle" element={<WordleGame />} />{" "}
           <Route path="/yoga" element={<YogaRedirect />} />{" "}
+          <Route path="/meditation" element={<PomodoroMeditation />} />{" "}
           {/* <Route path="/hole-in-wall" element={<sudoku />} />{" "} */}
           <Route path="/catch-the-block" element={<Game />} />{" "}
           <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
           <Route path="/memory-card" element={<MemoryCardGame />} />{" "}
           <Route path="/view360" element={<View360 />} />{" "}
+          <Route path="/screen" element={<NewScreenRecord />} />{" "}
           <Route path="/community" element={<CommunityForum />} />{" "}
           {/* Another example route */}
         </Routes>

@@ -107,54 +107,55 @@ const Game = () => {
 
   return (
     <Layout>
-    <div className="flex flex-col items-center  p-4 bg-gray-50 h-full w-full">
-      <h1 className="text-4xl font-bold mb-6 text-blue-600">Sudoku Game</h1>
-      <div className="grid grid-cols-9 gap-1 border-4 border-gray-800 rounded-lg p-2 bg-white shadow-md">
-        {board.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className={`w-16 h-16 flex items-center justify-center border-2 rounded-md ${
-                (Math.floor(rowIndex / 3) + Math.floor(colIndex / 3)) % 2 === 0
-                  ? "bg-gray-200"
-                  : "bg-gray-300"
-              } transition-all duration-200 hover:bg-gray-400`}
-            >
-              <input
-                type="text"
-                value={cell === 0 ? "" : cell}
-                onChange={(e) =>
-                  handleInputChange(rowIndex, colIndex, e.target.value)
-                }
-                className={`w-full h-full text-center text-2xl font-bold border-none focus:outline-none ${
-                  incorrectCells[rowIndex][colIndex]
-                    ? "text-red-500"
-                    : cell === solutionBoard[rowIndex][colIndex] // Check if it matches the solution board value
-                    ? "text-black"
-                    : "text-blue-500" // If it doesn't match, set text color to blue
-                }`}
-                maxLength={1}
-                disabled={initialBoard[rowIndex][colIndex] !== 0}
-              />
-            </div>
-          ))
-        )}
+      <div className="flex flex-col items-center  p-4 bg-gray-50 h-full w-full">
+        <h1 className="text-4xl font-bold mb-6 text-blue-600">Sudoku Game</h1>
+        <div className="grid grid-cols-9 gap-1 border-4 border-gray-800 rounded-lg p-2 bg-white shadow-md">
+          {board.map((row, rowIndex) =>
+            row.map((cell, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className={`w-16 h-16 flex items-center justify-center border-2 rounded-md ${
+                  (Math.floor(rowIndex / 3) + Math.floor(colIndex / 3)) % 2 ===
+                  0
+                    ? "bg-gray-200"
+                    : "bg-gray-300"
+                } transition-all duration-200 hover:bg-gray-400`}
+              >
+                <input
+                  type="text"
+                  value={cell === 0 ? "" : cell}
+                  onChange={(e) =>
+                    handleInputChange(rowIndex, colIndex, e.target.value)
+                  }
+                  className={`w-full h-full text-center text-2xl font-bold border-none focus:outline-none ${
+                    incorrectCells[rowIndex][colIndex]
+                      ? "text-red-500"
+                      : cell === solutionBoard[rowIndex][colIndex] // Check if it matches the solution board value
+                      ? "text-black"
+                      : "text-blue-500" // If it doesn't match, set text color to blue
+                  }`}
+                  maxLength={1}
+                  disabled={initialBoard[rowIndex][colIndex] !== 0}
+                />
+              </div>
+            ))
+          )}
+        </div>
+        <div className="flex space-x-4 mt-6">
+          <button
+            onClick={solveSudoku} // Call the updated solveSudoku function
+            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition duration-200"
+          >
+            Solve
+          </button>
+          <button
+            onClick={checkBoard}
+            className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-md shadow-md hover:bg-yellow-600 transition duration-200"
+          >
+            Check
+          </button>
+        </div>
       </div>
-      <div className="flex space-x-4 mt-6">
-        <button
-          onClick={solveSudoku} // Call the updated solveSudoku function
-          className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition duration-200"
-        >
-          Solve
-        </button>
-        <button
-          onClick={checkBoard}
-          className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-md shadow-md hover:bg-yellow-600 transition duration-200"
-        >
-          Check
-        </button>
-      </div>
-    </div>
     </Layout>
   );
 };
