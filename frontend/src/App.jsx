@@ -39,18 +39,6 @@ function App() {
           {/* Another example route */}
         </Routes>
       </Router>
-      {/* <Game /> */}
-      {/* <LandingPage /> */}
-      {/* <div className="bg-red-900">Hello</div> */}
-      {/* <GamePage /> */}
-      {/* <View360 /> */}
-      {/* <Game /> */}
-      {/* <MotionDetectionDrums /> */}
-      {/* <FallingRodsGame /> */}
-      {/* <Yoga /> */}
-      {/* <HandTracking /> */}
-      {/* <PoseDetectionOverlay /> */}
-      {/* <Yoga /> */}
       <Dashboard />
     </>
   );
