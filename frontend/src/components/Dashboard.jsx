@@ -7,18 +7,65 @@ import finbg from "../../public/financial_bg.jpg";
 import fries from "../../public/fries.png";
 import money from "../../public//money.png";
 import { useNavigate } from "react-router-dom";
+import Modal from "./Modal";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 Chart.register(ArcElement, Tooltip, Legend);
 Chart.register(...registerables);
+const API_KEY = "AIzaSyBBp8jEQ3zEJXLkSVgBpGHKr6q-EycIDSI";
+  const genAI = new GoogleGenerativeAI(API_KEY);
 
 const Dashboard = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [geminiMessage, setGeminiMessage] = useState(
+    "Based on your steps, we recommend trying a stretching routine to keep your muscles relaxed!"
+  );
+  const fetchGeminiMessage = async () => {
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt = `
+      GIVE ME OVERALL ANALYTICS AND RECOMMENDATIONS BASED ON MY NO.OF STEPS, CALORIES, AND EXERCISE. SEND AS JSON. 
+      Calories: data: [0,1264, 1754, 1672, 1143],
+      Exercise(in min): data: [0,75.2,122.8,110.4,78],
+         Steps: data: [0, 6424, 10334, 7613, 1846],
+        The Json should have the following keys: avg_exer, avg_cal, avg_steps, recommendations for each.
+    `;
+  
+    try {
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      let text = await response.text();
+      console.log(text);
+      // Clean and parse JSON
+      text = text.replace(/```JSON/g, "").replace(/```/g, "").trim();
+      // const jsonData = JSON.parse(text);
+  
+      // Format message for display in modal
+      
+  
+      setGeminiMessage(text);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Failed to fetch Gemini message:", error);
+      setGeminiMessage("Failed to load recommendations. Please try again later.");
+      setModalOpen(true);
+    }
+  };
+  
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   const navigate = useNavigate();
   const handleDoshaClick = () => {
     navigate('/dosha-quiz');
   };
 
-  const medicines = [
+    const medicines = [
     { name: "Paracetamol", schedule: "1-0-1" },
     { name: "Aspirin", schedule: "0-1-0" },
     { name: "Ibuprofen", schedule: "1-1-1" },
@@ -102,37 +149,37 @@ const Dashboard = () => {
     },
   };
 
-  const [dataType, setDataType] = useState("heartRate");
+  const [dataType, setDataType] = useState("calories");
 
   const lineData = {
-    heartRate: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    calories: {
+      labels: ["JUNE", "JUL", "AUG", "SEPT", "OCT"],
       datasets: [
         {
-          label: "Heart Rate",
-          data: [72, 75, 78, 80, 77],
+          label: "Calories",
+          data: [0,1264, 1754, 1672, 1143],
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
         },
       ],
     },
-    sleep: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    exercise: {
+      labels: ["JUNE", "JUL", "AUG", "SEPT", "OCT"],
       datasets: [
         {
-          label: "Sleep (hours)",
-          data: [7, 6.5, 8, 5.5, 7],
+          label: "Exercise(in min)",
+          data: [0,75.2,122.8,110.4,78],
           borderColor: "rgba(54, 162, 235, 1)",
           backgroundColor: "rgba(54, 162, 235, 0.2)",
         },
       ],
     },
     steps: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+      labels: ["JUNE", "JUL", "AUG", "SEPT", "OCT"],
       datasets: [
         {
           label: "Steps",
-          data: [1500, 2000, 2500, 3000, 3500],
+          data: [0, 6424, 10334, 7613, 1846],
           borderColor: "rgba(75, 192, 192, 1)",
           backgroundColor: "rgba(75, 192, 192, 0.2)",
         },
@@ -149,31 +196,35 @@ const Dashboard = () => {
       <Layout>
         <div className="flex h-full bg-gray-200 text-gray-800">
           {/* Main Content */}
-          <main className="flex gap-8 h-[80vh] w-full items-center justify-center p-4">
+          <main className="flex gap-8 h-[84vh] w-full items-center justify-center p-4">
             {/* Statistics Section */}
-            <section className="h-full w-[70%] bg-white rounded-lg shadow flex flex-col-reverse p-2">
+            <section className="h-full w-[70%] rounded-lg shadow flex flex-col-reverse p-2">
               <div className="h-[70%] w-full flex items-center justify-center relative">
-                <Line data={lineData[dataType]} className="w-full max-w-lg" />
+                <Line data={lineData[dataType]} className="w-full max-w-2xl pr-[10%]" />
 
-                <div className="absolute right-6 top-20 flex flex-col space-y-4">
+                <div className="absolute right-6 top-20  w-[16%] flex flex-col space-y-4">
                   <button
-                    onClick={() => handleButtonClick("heartRate")}
-                    className="bg-red-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+                    onClick={() => handleButtonClick("calories")}
+                    className="bg-[#ff5d5d] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
-                    Heart Rate
+                   Calories
                   </button>
                   <button
-                    onClick={() => handleButtonClick("sleep")}
+                    onClick={() => handleButtonClick("exercise")}
                     className="bg-blue-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
-                    Sleep
+                    Exercise(in min)
                   </button>
                   <button
                     onClick={() => handleButtonClick("steps")}
-                    className="bg-green-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+                    className="bg-[#66CEA5] text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
                   >
                     Steps
-                  </button>
+                  </button><button
+    onClick={fetchGeminiMessage}
+    className="bg-purple-500 text-white py-2 px-4 rounded shadow-md transition-transform transform hover:scale-105"
+  >Suggest
+  </button>
                 </div>
               </div>
               <div className="h-[30%] w-full  flex">
@@ -189,7 +240,7 @@ const Dashboard = () => {
                     className="h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"
                   >
                     ↓
-                  </button>
+                  </button> 
                 </div>
                 <div className="flex h-[100%] w-[90%] ">
                   <a
@@ -205,7 +256,7 @@ const Dashboard = () => {
                       src={fries || "path/to/money-image"}
                       alt="Money"
                     />
-                    <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#ff4444]">
+                    <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#ff5d5d]">
                       {labels.amountSpent}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1] bg-white">
@@ -246,16 +297,16 @@ const Dashboard = () => {
                     className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center"
                   >
                     <img
-                      className="float-end absolute bottom-[-20px] h-[55%] right-[-25px]"
+                      className="float-end absolute bottom-[-20px] z-[50] h-[55%] right-[-25px]"
                       src={books || "path/to/books-image"}
                       alt="Books"
                     />
-                    <div className="h-[30%] w-[100%] flex items-center justify-center font-medium bg-[#66CEA5]">
+                    <div className="h-[30%] w-[100%]  flex items-center justify-center font-medium bg-[#66CEA5]">
                       {labels.amountSaved}
                     </div>
-                    <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1]">
-                      <span className="font-semibold text-xl z-[100]">
-                        123&nbsp;<span className="text-sm">pts</span>
+                    <div className="h-[70%] w-[100%] bg-white flex items-center justify-center text-[18px] z-[1]">
+                      <span className="font-semibold text-xl  z-[100]">
+                        123&nbsp;<span className="text-sm z-[100]">pts</span>
                       </span>
                     </div>
                   </a>
@@ -266,7 +317,7 @@ const Dashboard = () => {
             {/* Profile Section */}
             <section className="flex flex-col h-full w-[30%] bg-white p-6 rounded-lg shadow">
               <div className="flex items-center h-[12%] space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gray-400"></div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s" alt="" className="h-12 w-12 rounded-2xl" />
                 <div>
                   <h3 className="text-lg font-medium">Sunil Pal</h3>
                   <p className="text-sm text-gray-500">Profile info here</p>
@@ -342,6 +393,8 @@ const Dashboard = () => {
                 </div>
               </div>
             </section>
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} message={geminiMessage} />
+   
           </main>
         </div>
       </Layout>

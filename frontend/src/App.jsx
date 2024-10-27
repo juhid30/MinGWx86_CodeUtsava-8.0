@@ -19,6 +19,7 @@ import DoshaQuiz from "../src/components/DoshaQuiz.jsx";
 import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
 import WordleGame from "./components/Wordle/WordleGame.jsx";
 import MemoryCardGame from "./components/MemoryCardGame.jsx";
+import CommunityForum from "./components/CommunityForum.jsx";
 const YogaRedirect = () => {
   useEffect(() => {
     window.location.href = "http://localhost:5174/start";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
           <Route path="/memory-card" element={<MemoryCardGame />} />{" "}
           <Route path="/view360" element={<View360 />} />{" "}
+          <Route path="/community" element={<CommunityForum />} />{" "}
           {/* Another example route */}
         </Routes>
       </Router>

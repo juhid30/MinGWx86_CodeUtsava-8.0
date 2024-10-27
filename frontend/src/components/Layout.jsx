@@ -20,9 +20,10 @@ const Layout = ({ children }) => {
             <div onClick={() => handleNavigation('/')} className="cursor-pointer">Home</div>
             <div onClick={() => handleNavigation('/dashboard')} className="cursor-pointer">Dashboard</div>
             <div onClick={() => handleNavigation('/view360')} className="cursor-pointer">Religious Tour</div>
+            <div onClick={() => handleNavigation('/community')} className="cursor-pointer">Community</div>
           </div>
           <div className="h-full w-[10%] rounded-r-[1.7rem] flex items-center justify-center">
-            <i className="ri-user-fill text-xl bg-purple-200 p-4 rounded-full"></i>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlkoa53zZB468uxslQjXZtrnqUZpa04vaVg&s" className="rounded-full h-[3rem]" alt="" />
           </div>
         </div>
       </div>
