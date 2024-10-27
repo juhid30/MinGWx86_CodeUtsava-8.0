@@ -32,7 +32,8 @@ const DoshaQuiz = () => {
     );
     return highestDosha;
   };
-
+ 
+  
   const dominantDosha = showResult ? getResult() : null;
   useEffect(() => console.log(dominantDosha), [dominantDosha]);
 
