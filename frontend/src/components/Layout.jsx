@@ -8,13 +8,13 @@ const Layout = ({ children }) => {
           <div className="h-full w-[20%] rounded-l-[1.7rem] flex items-center justify-center">
             <img src={logo} width={140} height={140}></img>
           </div>
-          <div className="h-full w-[70%] bg-green-50 flex items-center justify-around">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
+          <div className="h-full w-[70%]  flex items-center justify-around">
+            <div>Home</div>
+            <div>Dashboard</div>
+            <div>BlockGame</div>
           </div>
-          <div className="h-full w-[10%] bg-pink-50 rounded-r-[1.7rem] flex items-center justify-center">
-            <i class="ri-user-fill"></i>
+          <div className="h-full w-[10%]  rounded-r-[1.7rem] flex items-center justify-center">
+            <i class="ri-user-fill text-xl bg-purple-200 p-4 rounded-full"></i>
           </div>
         </div>
       </div>

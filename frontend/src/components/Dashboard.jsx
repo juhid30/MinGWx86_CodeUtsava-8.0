@@ -35,9 +35,9 @@ const Dashboard = () => {
   ];
 
   const [labels, setLabels] = useState({
-    amountSpent: "Amount Spent",
-    financialGames: "Financial Games",
-    amountSaved: "Amount Saved",
+    amountSpent: "Wordle",
+    financialGames: "Sudoku",
+    amountSaved: "Memory Cards",
   });
 
   const handleArrowClick = (direction) => {
@@ -206,7 +206,7 @@ const Dashboard = () => {
                       {labels.amountSpent}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1] bg-white">
-                      ₹{"5000"}
+                      <span className="font-semibold text-xl">684&nbsp;<span className="text-sm">pts</span></span>
                     </div>
                   </div>
 
@@ -238,7 +238,7 @@ const Dashboard = () => {
                       {labels.amountSaved}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1]">
-                      <span className="z-[100]">₹{"2500"}</span>
+                    <span className="font-semibold text-xl z-[100]">123&nbsp;<span className="text-sm">pts</span></span>
                     </div>
                   </div>
                 </div>

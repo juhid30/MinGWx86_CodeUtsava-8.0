@@ -5,6 +5,7 @@ import Webcam from "react-webcam";
 import { drawHand } from "./utilities";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
+import Layout from "../Layout";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -80,44 +81,28 @@ const Game = () => {
       unsubscribe(); // Clean up the listener
     };
   }, []);
-
   return (
-    <div className="h-screen w-screen bg-red-50">
-      <Webcam
-        ref={webcamRef}
-        style={{
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 9,
-          width: 640,
-          height: 480,
-        }}
-      />
-
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 10,
-          width: 640,
-          height: 480,
-        }}
-      />
-
-      <div style={{ position: "absolute", bottom: 20, left: 20, color: 'black', fontSize: '24px', zIndex: 69 }}>
-        Click Count: {clickCount}
+    <Layout>
+      <div className="h-full w-full bg-red-50 flex flex-col">
+      <div className="flex-grow relative h-full w-full">
+        <Webcam
+          ref={webcamRef}
+          className="absolute inset-0 w-[90vw] h-[80vh] object-cover z-9"
+        />
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-[90vw] h-[80vh] z-10"
+        />
+      </div>
+  
+      <div className="p-4 text-white text-2xl z-20 bg-black bg-opacity-50">
+        SCORE: {clickCount}
       </div>
     </div>
+    </Layout>
   );
+  
+  
 };
 
 export default Game;

@@ -39,7 +39,7 @@ function App() {
           {/* Another example route */}
         </Routes>
       </Router>
-      <Dashboard />
+      {/* <Dashboard /> */}
     </>
   );
 }
