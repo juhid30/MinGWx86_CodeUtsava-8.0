@@ -12,9 +12,7 @@ import LandingPage from "./components/LandingPage";
 import PoseDetectionOverlay from "./components/PoseDetectionOverlay";
 import BlockGame from "../src/components/MobilityGame/Game.jsx";
 import ScreenRecorder from "./components/ScreenRecorder.jsx";
-import NewScreenRecord from "./components/NewScreenRecord.jsx";
 import Dashboard from "./components/Dashboard.jsx";
-// import Game from "../src/components/MobilityGame/Game.jsx";
 // import GamePage from "./components/GamePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/LoginPage.jsx";
@@ -52,9 +50,7 @@ function App() {
       {/* <HandTracking /> */}
       {/* <PoseDetectionOverlay /> */}
       {/* <Yoga /> */}
-      {/* <ScreenRecorder /> */}
-      {/* <NewScreenRecord /> */}
-      {/* <Game /> */}
+      <Dashboard />
     </>
   );
 }
