@@ -18,6 +18,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/LoginPage.jsx";
 import DoshaQuiz from "../src/components/DoshaQuiz.jsx";
 import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
+import WordleGame from "./components/Wordle/WordleGame.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -29,7 +30,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />{" "}
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           <Route path="/sudoku" element={<SudokuGame />} />{" "}
-          <Route path="/wordle" element={<wordle />} />{" "}
+          <Route path="/wordle" element={<WordleGame />} />{" "}
           <Route path="/mem-puzzle" element={<sudoku />} />{" "}
           <Route path="/yoga" element={<sudoku />} />{" "}
           <Route path="/hole-in-wall" element={<sudoku />} />{" "}
