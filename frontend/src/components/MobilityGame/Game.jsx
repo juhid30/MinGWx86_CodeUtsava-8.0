@@ -113,7 +113,16 @@ const Game = () => {
         }}
       />
 
-      <div style={{ position: "absolute", bottom: 20, left: 20, color: 'black', fontSize: '24px', zIndex: 69 }}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: 20,
+          color: "black",
+          fontSize: "24px",
+          zIndex: 69,
+        }}
+      >
         Click Count: {clickCount}
       </div>
     </div>

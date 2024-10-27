@@ -45,7 +45,7 @@ const LandingPage = () => {
                 (label) => (
                   <motion.div
                     key={label}
-                    className="border-2 border-[#7c4776] hover:bg-[#7c4776] transition-all duration-200 flex items-center justify-center rounded-full px-4 py-1"
+                    className="border-2 border-[#7c4776] hover:bg-[#7c4776] hover:text-white transition-all duration-200 flex items-center justify-center rounded-full px-4 py-1"
                     variants={pillVariants}
                   >
                     {label}
