@@ -6,11 +6,18 @@ import books from "../../public/books.png";
 import finbg from "../../public/financial_bg.jpg";
 import fries from "../../public/fries.png";
 import money from "../../public//money.png";
+import { useNavigate } from "react-router-dom";
 
 Chart.register(ArcElement, Tooltip, Legend);
 Chart.register(...registerables);
 
 const Dashboard = () => {
+
+  const navigate = useNavigate();
+  const handleDoshaClick = () => {
+    navigate('/dosha-quiz');
+  };
+
   const medicines = [
     { name: "Paracetamol", schedule: "1-0-1" },
     { name: "Aspirin", schedule: "0-1-0" },
@@ -141,17 +148,6 @@ const Dashboard = () => {
     <>
       <Layout>
         <div className="flex h-full bg-gray-200 text-gray-800">
-          {/* Sidebar (commented out) */}
-          {/* <aside className="w-16 bg-gray-800 text-white p-4 space-y-6">
-            <div className="rounded-full w-10 h-10 bg-gray-400"></div>
-            <nav className="flex flex-col space-y-4">
-              <div className="w-8 h-8 bg-gray-600 rounded"></div>
-              <div className="w-8 h-8 bg-gray-600 rounded"></div>
-              <div className="w-8 h-8 bg-gray-600 rounded"></div>
-              <div className="w-8 h-8 bg-gray-600 rounded"></div>
-            </nav>
-          </aside> */}
-
           {/* Main Content */}
           <main className="flex gap-8 h-[80vh] w-full items-center justify-center p-4">
             {/* Statistics Section */}
@@ -196,7 +192,14 @@ const Dashboard = () => {
                   </button>
                 </div>
                 <div className="flex h-[100%] w-[90%] ">
-                  <div className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center ">
+                  <a
+                    href={
+                      labels.amountSpent === "Yoga Trainer"
+                        ? "/yoga"
+                        : "/wordle"
+                    }
+                    className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center"
+                  >
                     <img
                       className="float-end absolute bottom-[-30px] -rotate-12 h-[75%] right-[-25px] z-20"
                       src={fries || "path/to/money-image"}
@@ -206,18 +209,24 @@ const Dashboard = () => {
                       {labels.amountSpent}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1] bg-white">
-                      <span className="font-semibold text-xl">684&nbsp;<span className="text-sm">pts</span></span>
+                      <span className="font-semibold text-xl">
+                        684&nbsp;<span className="text-sm">pts</span>
+                      </span>
                     </div>
-                  </div>
+                  </a>
 
                   <a
-                    href="https://financial-game.vercel.app/"
+                    href={
+                      labels.financialGames === "Sudoku"
+                        ? "/sudoku"
+                        : "/catch-the-block"
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-[33.33%] m-[0.4rem] border-[10px] border-[#B8E0E0] relative overflow-hidden rounded-[30px] flex flex-col items-center"
                   >
                     <img
-                      src={finbg || "path/to/financial-game-image"}
+                      src={finbg}
                       alt="button for financial games"
                       className="h-[90%] mt-2 w-[90%]"
                     />
@@ -228,7 +237,14 @@ const Dashboard = () => {
                     </span>
                   </a>
 
-                  <div className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center ">
+                  <a
+                    href={
+                      labels.amountSaved === "Memory Cards"
+                        ? "/memory-card"
+                        : "/hole-in-wall"
+                    }
+                    className="w-[33.33%] m-[0.4rem] border border-[#e7e7e7] relative overflow-hidden rounded-[30px] flex flex-col items-center"
+                  >
                     <img
                       className="float-end absolute bottom-[-20px] h-[55%] right-[-25px]"
                       src={books || "path/to/books-image"}
@@ -238,9 +254,11 @@ const Dashboard = () => {
                       {labels.amountSaved}
                     </div>
                     <div className="h-[70%] w-[100%] flex items-center justify-center text-[18px] z-[1]">
-                    <span className="font-semibold text-xl z-[100]">123&nbsp;<span className="text-sm">pts</span></span>
+                      <span className="font-semibold text-xl z-[100]">
+                        123&nbsp;<span className="text-sm">pts</span>
+                      </span>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </section>
@@ -250,7 +268,7 @@ const Dashboard = () => {
               <div className="flex items-center h-[12%] space-x-4">
                 <div className="w-12 h-12 rounded-full bg-gray-400"></div>
                 <div>
-                  <h3 className="text-lg font-medium">Alex Bennett</h3>
+                  <h3 className="text-lg font-medium">Sunil Pal</h3>
                   <p className="text-sm text-gray-500">Profile info here</p>
                 </div>
               </div>
@@ -286,7 +304,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-              <div className="h-[20%] w-full flex mt-4">
+              <div className="h-[20%] w-full flex mt-4"
+                onClick={handleDoshaClick}
+              >
                 <div className="w-full h-full flex justify-center items-center">
                   <div className="w-[35%] flex justify-center p-4 items-center flex-col">
                     <h5 className="text-sm font-semibold mb-2">Dosha</h5>

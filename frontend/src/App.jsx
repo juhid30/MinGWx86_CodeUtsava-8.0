@@ -19,6 +19,7 @@ import LoginPage from "./components/LoginPage.jsx";
 import DoshaQuiz from "../src/components/DoshaQuiz.jsx";
 import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
 import WordleGame from "./components/Wordle/WordleGame.jsx";
+import MemoryCardGame from "./components/MemoryCardGame.jsx";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -31,27 +32,15 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           <Route path="/sudoku" element={<SudokuGame />} />{" "}
           <Route path="/wordle" element={<WordleGame />} />{" "}
-          {/* <Route path="/mem-puzzle" element={<sudoku />} />{" "}
-          <Route path="/yoga" element={<sudoku />} />{" "}
-          <Route path="/hole-in-wall" element={<sudoku />} />{" "} */}
+          {/* <Route path="/yoga" element={<sudoku />} />{" "} */}
+          {/* <Route path="/hole-in-wall" element={<sudoku />} />{" "} */}
           <Route path="/catch-the-block" element={<Game />} />{" "}
           <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
+          <Route path="/memory-card" element={<MemoryCardGame />} />{" "}
           {/* Another example route */}
         </Routes>
       </Router>
-      {/* <Game /> */}
-      {/* <LandingPage /> */}
-      {/* <div className="bg-red-900">Hello</div> */}
-      {/* <GamePage /> */}
-      {/* <View360 /> */}
-      {/* <Game /> */}
-      {/* <MotionDetectionDrums /> */}
-      {/* <FallingRodsGame /> */}
-      {/* <Yoga /> */}
-      {/* <HandTracking /> */}
-      {/* <PoseDetectionOverlay /> */}
-      {/* <Yoga /> */}
-      {/* <Dashboard /> */}
+
     </>
   );
 }
