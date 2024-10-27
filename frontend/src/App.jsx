@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -19,6 +19,13 @@ import DoshaQuiz from "../src/components/DoshaQuiz.jsx";
 import SudokuGame from "../src/components/SudokuGame/SudokuGame.jsx";
 import WordleGame from "./components/Wordle/WordleGame.jsx";
 import MemoryCardGame from "./components/MemoryCardGame.jsx";
+const YogaRedirect = () => {
+  useEffect(() => {
+    window.location.href = "http://localhost:5174/start";
+  }, []);
+
+  return null; // No UI to render
+};
 function App() {
   const [count, setCount] = useState(0);
 
@@ -31,7 +38,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />{" "}
           <Route path="/sudoku" element={<SudokuGame />} />{" "}
           <Route path="/wordle" element={<WordleGame />} />{" "}
-          {/* <Route path="/yoga" element={<sudoku />} />{" "} */}
+          <Route path="/yoga" element={<YogaRedirect />} />{" "}
           {/* <Route path="/hole-in-wall" element={<sudoku />} />{" "} */}
           <Route path="/catch-the-block" element={<Game />} />{" "}
           <Route path="/dosha-quiz" element={<DoshaQuiz />} />{" "}
