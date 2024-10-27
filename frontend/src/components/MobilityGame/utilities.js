@@ -21,7 +21,7 @@ let boxX = 70; // Initial X position of the box
 let boxY = 420; // Initial Y position of the box
 const boxWidth = 100; // Width of the box
 const boxHeight = 50; // Height of the box
-const maxClicks = 5; // Maximum number of boxes
+const maxClicks = 9; // Maximum number of boxes
 let clickCount = 0; // Count of boxes drawn
 
 // Define the maximum and minimum boundaries
